@@ -1,66 +1,160 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# EcommerceAPI
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
 </p>
 
-## About Laravel
+## Overview
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+EcommerceAPI is a robust RESTful API built with Laravel for e-commerce applications. It provides a comprehensive set of endpoints to manage products, categories, brands, orders, and user authentication, making it an ideal backend solution for e-commerce websites and mobile applications.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **User Authentication** - Secure JWT-based authentication system
+- **Product Management** - Create, read, update, and delete products with support for images
+- **Category Management** - Organize products into categories
+- **Brand Management** - Associate products with brands
+- **Order Processing** - Complete order management system
+- **Location Management** - Track delivery locations
 
-## Learning Laravel
+## Requirements
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- PHP ^8.1
+- Composer
+- MySQL or compatible database
+- Laravel 10.x
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Clone the repository:
+   ```bash
+   git clone https://your-repository-url/EcommerceAPI.git
+   cd EcommerceAPI
+   ```
 
-## Laravel Sponsors
+2. Install dependencies:
+   ```bash
+   composer install
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. Create and configure your environment file:
+   ```bash
+   cp .env.example .env
+   ```
+   Then update the `.env` file with your database credentials and other configuration settings.
 
-### Premium Partners
+4. Generate application key:
+   ```bash
+   php artisan key:generate
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+5. Generate JWT secret:
+   ```bash
+   php artisan jwt:secret
+   ```
+
+6. Run database migrations and seeders:
+   ```bash
+   php artisan migrate
+   php artisan db:seed
+   ```
+
+7. Start the development server:
+   ```bash
+   php artisan serve
+   ```
+
+## API Documentation
+
+Detailed API documentation is available in the [API_DOCUMENTATION.md](API_DOCUMENTATION.md) file. This documentation includes:
+
+- Complete endpoint descriptions
+- Request/response formats with JSON examples
+- Authentication requirements and JWT token usage
+- Error handling information
+- Data models
+
+### Available Endpoints
+
+#### Authentication
+
+- `POST /api/auth/register` - Register a new user
+- `POST /api/auth/login` - Login and get JWT token
+- `POST /api/auth/logout` - Logout and invalidate token
+- `POST /api/auth/refresh` - Refresh JWT token
+- `GET /api/auth/user-profile` - Get authenticated user details
+
+#### Products
+
+- `GET /api/product` - List all products
+- `GET /api/product/{id}` - Get product details
+- `POST /api/product` - Create a new product
+- `POST /api/product/update/{id}` - Update a product
+- `DELETE /api/product/{id}` - Delete a product
+
+#### Categories
+
+- `GET /api/category` - List all categories
+- `GET /api/category/{id}` - Get category details
+- `POST /api/category` - Create a new category
+- `POST /api/category/update/{id}` - Update a category
+- `DELETE /api/category/{id}` - Delete a category
+
+#### Brands
+
+- `GET /api/brand` - List all brands
+- `GET /api/brand/{id}` - Get brand details
+- `POST /api/brand` - Create a new brand
+- `PUT /api/brand/{id}` - Update a brand
+- `DELETE /api/brand/{id}` - Delete a brand
+
+#### Orders
+
+- `GET /api/order` - List all orders
+- `GET /api/order/{id}` - Get order details
+- `POST /api/order` - Create a new order
+- `GET /api/order/get_order_items/{id}` - Get order items
+- `GET /api/order/get_user_orders/{user_id}` - Get user orders
+- `POST /api/order/change_order_status/{id}` - Update order status
+
+#### Locations
+
+- `GET /api/location` - List all locations
+- `POST /api/location` - Create a new location
+- `PUT /api/location/{id}` - Update a location
+- `DELETE /api/location/{id}` - Delete a location
+
+For complete details on request/response formats, authentication, and usage examples, please refer to the [API Documentation](API_DOCUMENTATION.md).
+
+## Data Models
+
+- **User** - Authentication and user information
+- **Product** - Product details including name, price, availability, and images
+- **Category** - Product categorization
+- **Brand** - Product brand information
+- **Order** - Order details including status and delivery information
+- **OrderItem** - Individual items within an order
+- **Location** - Delivery location information
+
+## Security
+
+This API uses JWT (JSON Web Tokens) for authentication. Protected routes require a valid token to be included in the request header.
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Acknowledgments
+
+- [Laravel](https://laravel.com) - The web framework used
+- [JWT Auth](https://github.com/tymondesigns/jwt-auth) - For JWT authentication
